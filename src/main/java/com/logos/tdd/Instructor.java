@@ -3,7 +3,11 @@ package com.logos.tdd;
 import java.util.stream.IntStream;
 import org.apache.commons.lang3.StringUtils;
 
-public class SoundOff {
+public class Instructor {
+
+  public static final String FIZZ = "Fizz";
+  public static final String WHIZZ = "Whizz";
+  public static final String BUZZ = "Buzz";
 
   public static void main(String[] args) {
     IntStream.range(1, 1024).forEach(number -> System.out.println(soundOff(number)));
@@ -11,29 +15,25 @@ public class SoundOff {
 
   protected static String soundOff(Integer number) {
 
-    if (IsNumberHasSpecialCharacters(number,"7")){
+    if (IsNumberHasSpecialCharacters(number, "7")) {
       return ruleForNumberHas7(number);
     }
-    if (IsNumberHasSpecialCharacters(number,"5")){
+    if (IsNumberHasSpecialCharacters(number, "5")) {
       return ruleForNumberHas5(number);
     }
     if (IsNumberHasSpecialCharacters(number, "3")) {
-      return "Fizz";
+      return FIZZ;
     }
-    String x = NormalMutipleRule(number);
-    if (x != null) {
-      return x;
-    }
-    return number.toString();
+    return NormalMultipleRule(number);
   }
 
   private static String ruleForNumberHas7(Integer number) {
     String soundOff = "";
     if (isNumberMultipleOfDividend(number, 3)) {
-      soundOff += "Fizz";
+      soundOff += FIZZ;
     }
     if (isNumberMultipleOfDividend(number, 7)) {
-      soundOff += "Whizz";
+      soundOff += WHIZZ;
     }
     return soundOff;
   }
@@ -42,10 +42,10 @@ public class SoundOff {
     String soundOff = "";
 
     if (isNumberMultipleOfDividend(number, 5)) {
-      soundOff += "Buzz";
+      soundOff += BUZZ;
     }
     if (isNumberMultipleOfDividend(number, 7)) {
-      soundOff += "Whizz";
+      soundOff += WHIZZ;
     }
     return soundOff;
   }
@@ -54,19 +54,18 @@ public class SoundOff {
     return number.toString().contains(specialCharacters);
   }
 
-  private static String NormalMutipleRule(Integer number) {
+  private static String NormalMultipleRule(Integer number) {
     String soundOff = "";
     if (isNumberMultipleOfDividend(number, 3)) {
-      soundOff += "Fizz";
+      soundOff += FIZZ;
     }
     if (isNumberMultipleOfDividend(number, 5)) {
-      soundOff += "Buzz";
+      soundOff += BUZZ;
     }
     if (isNumberMultipleOfDividend(number, 7)) {
-      soundOff += "Whizz";
+      soundOff += WHIZZ;
     }
-
-    return StringUtils.isBlank(soundOff) ? null : soundOff;
+    return StringUtils.isBlank(soundOff) ? number.toString() : soundOff;
   }
 
   private static boolean isNumberMultipleOfDividend(Integer number, Integer dividend) {

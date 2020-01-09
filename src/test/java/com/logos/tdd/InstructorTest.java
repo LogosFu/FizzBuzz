@@ -1,13 +1,12 @@
 package com.logos.tdd;
 
-import static com.logos.tdd.SoundOff.soundOff;
+import static com.logos.tdd.Instructor.soundOff;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class SoundOffTest {
+class InstructorTest {
 
   @ParameterizedTest
   @CsvSource({"1,1", "2,2", "19,19", "22,22"})
