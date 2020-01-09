@@ -9,13 +9,23 @@ public class SoundOff {
   }
 
   protected static String soundOff(Integer number) {
+    String x = NormalMutipleRule(number);
+    if (x != null)
+      return x;
+    return number.toString();
+  }
+
+  private static String NormalMutipleRule(Integer number) {
     if (isNumberMultipleOfDividend(number, 3)) {
       return "Fizz";
     }
-    if (isNumberMultipleOfDividend(number,5)){
+    if (isNumberMultipleOfDividend(number, 5)) {
       return "Buzz";
     }
-    return number.toString();
+    if (isNumberMultipleOfDividend(number, 7)) {
+      return "Whizz";
+    }
+    return null;
   }
 
   private static boolean isNumberMultipleOfDividend(Integer number, Integer dividend) {

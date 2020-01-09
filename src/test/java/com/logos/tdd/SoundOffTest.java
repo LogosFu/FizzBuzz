@@ -1,6 +1,7 @@
 package com.logos.tdd;
 
 import static com.logos.tdd.SoundOff.soundOff;
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,6 +24,12 @@ class SoundOffTest {
   @ParameterizedTest
   @CsvSource({"5,Buzz", "10,Buzz", "25,Buzz", "20,Buzz"})
   void shouldReturnBuzzWhenSoundOffGivenNumberMultipleOf5(Integer number, String soundOff) {
+    assertThat(soundOff(number)).isEqualTo(soundOff);
+  }
+
+  @ParameterizedTest
+  @CsvSource({"7,Whizz","14,Whizz","28,Whizz"})
+  void shouldReturnWhizzWhenSoundOffGivenNumberMultipleOf7(Integer number,String soundOff){
     assertThat(soundOff(number)).isEqualTo(soundOff);
   }
 }
