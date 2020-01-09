@@ -46,11 +46,7 @@ public class Instructor {
   }
 
   private static String ruleForMultiple(Integer number, DividendENUM dividend) {
-    String ruleResult = "";
-    if (isNumberMultipleOfDividend(number, dividend.getDividend())) {
-      ruleResult = dividend.name();
-    }
-    return ruleResult;
+    return isNumberMultipleOfDividend(number, dividend.getDividend()) ? dividend.name() : "";
   }
 
   private static boolean IsNumberHasSpecialCharacters(Integer number, String specialCharacters) {
