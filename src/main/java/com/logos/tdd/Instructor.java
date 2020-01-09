@@ -5,10 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 
 public class Instructor {
 
-  public static final String FIZZ = "Fizz";
-  public static final String WHIZZ = "Whizz";
-  public static final String BUZZ = "Buzz";
-
   public static void main(String[] args) {
     IntStream.range(1, 1024).forEach(number -> System.out.println(soundOff(number)));
   }
@@ -22,31 +18,30 @@ public class Instructor {
       return ruleForNumberHas5(number);
     }
     if (IsNumberHasSpecialCharacters(number, "3")) {
-      return FIZZ;
+      return DividendENUM.Fizz.name();
     }
     return NormalMultipleRule(number);
   }
 
   private static String ruleForNumberHas7(Integer number) {
     String soundOff = "";
-    if (isNumberMultipleOfDividend(number, 3)) {
-      soundOff += FIZZ;
-    }
-    if (isNumberMultipleOfDividend(number, 7)) {
-      soundOff += WHIZZ;
-    }
+    soundOff += ruleForMultiple(number, DividendENUM.Fizz);
+    soundOff += ruleForMultiple(number, DividendENUM.Whizz);
     return soundOff;
+  }
+
+  private static String ruleForMultiple(Integer number, DividendENUM dividend) {
+    String ruleResult = "";
+    if (isNumberMultipleOfDividend(number, dividend.getDividend())) {
+      ruleResult = dividend.name();
+    }
+    return ruleResult;
   }
 
   private static String ruleForNumberHas5(Integer number) {
     String soundOff = "";
-
-    if (isNumberMultipleOfDividend(number, 5)) {
-      soundOff += BUZZ;
-    }
-    if (isNumberMultipleOfDividend(number, 7)) {
-      soundOff += WHIZZ;
-    }
+    soundOff += ruleForMultiple(number, DividendENUM.Buzz);
+    soundOff += ruleForMultiple(number, DividendENUM.Whizz);
     return soundOff;
   }
 
@@ -56,15 +51,9 @@ public class Instructor {
 
   private static String NormalMultipleRule(Integer number) {
     String soundOff = "";
-    if (isNumberMultipleOfDividend(number, 3)) {
-      soundOff += FIZZ;
-    }
-    if (isNumberMultipleOfDividend(number, 5)) {
-      soundOff += BUZZ;
-    }
-    if (isNumberMultipleOfDividend(number, 7)) {
-      soundOff += WHIZZ;
-    }
+    soundOff += ruleForMultiple(number, DividendENUM.Fizz);
+    soundOff += ruleForMultiple(number, DividendENUM.Buzz);
+    soundOff += ruleForMultiple(number, DividendENUM.Whizz);
     return StringUtils.isBlank(soundOff) ? number.toString() : soundOff;
   }
 
