@@ -12,6 +12,9 @@ public class SoundOff {
     if (isNumberMultipleOfDividend(number, 3)) {
       return "Fizz";
     }
+    if (isNumberMultipleOfDividend(number,5)){
+      return "Buzz";
+    }
     return number.toString();
   }
 

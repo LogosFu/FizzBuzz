@@ -20,9 +20,9 @@ class SoundOffTest {
     assertThat(soundOff(number)).isEqualTo(soundOff);
   }
 
-//  @ParameterizedTest
-//  @CsvSource({"5,Fizz", "10,Fizz", "25,Fizz", "20,Fizz"})
-//  void shouldReturnFizzWhenSoundOffGivenNumberMultipleOf5(Integer number, String soundOff) {
-//    assertThat(soundOff(number)).isEqualTo(soundOff);
-//  }
+  @ParameterizedTest
+  @CsvSource({"5,Buzz", "10,Buzz", "25,Buzz", "20,Buzz"})
+  void shouldReturnBuzzWhenSoundOffGivenNumberMultipleOf5(Integer number, String soundOff) {
+    assertThat(soundOff(number)).isEqualTo(soundOff);
+  }
 }
