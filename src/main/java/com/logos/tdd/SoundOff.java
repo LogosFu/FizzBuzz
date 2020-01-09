@@ -9,6 +9,9 @@ public class SoundOff {
   }
 
   protected static String soundOff(Integer number) {
+    if (number % 3 == 0) {
+      return "Fizz";
+    }
     return number.toString();
   }
 }
