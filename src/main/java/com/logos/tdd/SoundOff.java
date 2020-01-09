@@ -10,6 +10,10 @@ public class SoundOff {
   }
 
   protected static String soundOff(Integer number) {
+
+    if (IsNumberHasSpecialCharacters(number,"7")){
+      return ruleForNumberHas7(number);
+    }
     if (IsNumberHasSpecialCharacters(number,"5")){
       return ruleForNumberHas5(number);
     }
@@ -21,6 +25,17 @@ public class SoundOff {
       return x;
     }
     return number.toString();
+  }
+
+  private static String ruleForNumberHas7(Integer number) {
+    String soundOff = "";
+    if (isNumberMultipleOfDividend(number, 3)) {
+      soundOff += "Fizz";
+    }
+    if (isNumberMultipleOfDividend(number, 7)) {
+      soundOff += "Whizz";
+    }
+    return soundOff;
   }
 
   private static String ruleForNumberHas5(Integer number) {

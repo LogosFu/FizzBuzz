@@ -55,4 +55,9 @@ class SoundOffTest {
   void shouldReturnMultiPleRuleOf5And7WhenSoundOFGivenNumberHave5(Integer number, String soundOff) {
     assertThat(soundOff(number)).isEqualTo(soundOff);
   }
+  @ParameterizedTest
+  @CsvSource({"75,Fizz","147,FizzWhizz"})
+  void shouldReturnMultiPleRuleOf3And7WhenSoundOFGivenNumberHave7(Integer number, String soundOff) {
+    assertThat(soundOff(number)).isEqualTo(soundOff);
+  }
 }
