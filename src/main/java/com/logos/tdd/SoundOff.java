@@ -10,11 +10,19 @@ public class SoundOff {
   }
 
   protected static String soundOff(Integer number) {
+    final String specialCharacters = "3";
     String x = NormalMutipleRule(number);
     if (x != null) {
       return x;
     }
+    if (IsNumberHasSpecialCharacters(number, specialCharacters)) {
+      return "Fizz";
+    }
     return number.toString();
+  }
+
+  private static boolean IsNumberHasSpecialCharacters(Integer number, String specialCharacters) {
+    return number.toString().contains(specialCharacters);
   }
 
   private static String NormalMutipleRule(Integer number) {

@@ -3,6 +3,7 @@ package com.logos.tdd;
 import static com.logos.tdd.SoundOff.soundOff;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -40,6 +41,12 @@ class SoundOffTest {
   @CsvSource({"15,FizzBuzz", "21,FizzWhizz", "35,BuzzWhizz", "210,FizzBuzzWhizz"})
   void should_return_superposition_when_sound_off_given_number_both_multiple_of3_or5_or7(
       Integer number, String soundOff) {
+    assertThat(soundOff(number)).isEqualTo(soundOff);
+  }
+
+  @ParameterizedTest
+  @CsvSource({"13,Fizz","23,Fizz","131,Fizz"})
+  void shouldReturnFizzWhenSoundOffGivenNumberHas3(Integer number, String soundOff) {
     assertThat(soundOff(number)).isEqualTo(soundOff);
   }
 }
