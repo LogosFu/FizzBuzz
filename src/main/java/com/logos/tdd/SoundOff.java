@@ -10,8 +10,10 @@ public class SoundOff {
   }
 
   protected static String soundOff(Integer number) {
-    final String specialCharacters = "3";
-    if (IsNumberHasSpecialCharacters(number, specialCharacters)) {
+    if (IsNumberHasSpecialCharacters(number,"5")){
+      return ruleForNumberHas5(number);
+    }
+    if (IsNumberHasSpecialCharacters(number, "3")) {
       return "Fizz";
     }
     String x = NormalMutipleRule(number);
@@ -19,6 +21,18 @@ public class SoundOff {
       return x;
     }
     return number.toString();
+  }
+
+  private static String ruleForNumberHas5(Integer number) {
+    String soundOff = "";
+
+    if (isNumberMultipleOfDividend(number, 5)) {
+      soundOff += "Buzz";
+    }
+    if (isNumberMultipleOfDividend(number, 7)) {
+      soundOff += "Whizz";
+    }
+    return soundOff;
   }
 
   private static boolean IsNumberHasSpecialCharacters(Integer number, String specialCharacters) {
