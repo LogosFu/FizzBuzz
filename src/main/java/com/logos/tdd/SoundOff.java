@@ -9,9 +9,13 @@ public class SoundOff {
   }
 
   protected static String soundOff(Integer number) {
-    if (number % 3 == 0) {
+    if (isNumberMultipleOfDividend(number, 3)) {
       return "Fizz";
     }
     return number.toString();
+  }
+
+  private static boolean isNumberMultipleOfDividend(Integer number, Integer dividend) {
+    return number % dividend == 0;
   }
 }
