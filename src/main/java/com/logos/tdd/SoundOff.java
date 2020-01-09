@@ -11,12 +11,12 @@ public class SoundOff {
 
   protected static String soundOff(Integer number) {
     final String specialCharacters = "3";
+    if (IsNumberHasSpecialCharacters(number, specialCharacters)) {
+      return "Fizz";
+    }
     String x = NormalMutipleRule(number);
     if (x != null) {
       return x;
-    }
-    if (IsNumberHasSpecialCharacters(number, specialCharacters)) {
-      return "Fizz";
     }
     return number.toString();
   }
