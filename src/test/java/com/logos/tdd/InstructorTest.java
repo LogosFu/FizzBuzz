@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class InstructorTest {
 
   @ParameterizedTest
-  @CsvSource({"1,1", "2,2", "19,19", "22,22"})
+  @CsvSource({"1,1", "2,2", "19,19", "22,22","37,37"})
   void should_return_number_string_when_sound_off_given_normal_number(Integer number,
       String soundOff) {
     assertThat(soundOff(number)).isEqualTo(soundOff);
