@@ -7,7 +7,6 @@ import static java.util.stream.Collectors.joining;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
-import org.apache.commons.lang3.StringUtils;
 
 public class Instructor {
 
@@ -23,15 +22,15 @@ public class Instructor {
     if (isNumberHasSpecialCharacters(number, "5")) {
       return ruleStrategy(number, Buzz, Whizz);
     }
+
+
     if (isNumberHasSpecialCharacters(number, "3")) {
       return Fizz.name();
     }
-    return normalMultipleRule(number);
-  }
-
-  private static String normalMultipleRule(Integer number) {
-    String soundOff = ruleStrategy(number, Fizz, Buzz, Whizz);
-    return StringUtils.isBlank(soundOff) ? number.toString() : soundOff;
+    if (isNumberMultipleOfAnyDividend(number, 3, 5, 7)) {
+      return ruleStrategy(number, Fizz, Buzz, Whizz);
+    }
+    return number.toString();
   }
 
   private static String ruleStrategy(Integer number, DividendENUM... dividends) {
@@ -45,6 +44,10 @@ public class Instructor {
 
   private static boolean isNumberHasSpecialCharacters(Integer number, String specialCharacters) {
     return number.toString().contains(specialCharacters);
+  }
+
+  private static boolean isNumberMultipleOfAnyDividend(Integer number, Integer... dividends) {
+    return Arrays.stream(dividends).anyMatch(dividend -> number % dividend == 0);
   }
 
   private static boolean isNumberMultipleOfDividend(Integer number, Integer dividend) {
