@@ -18,17 +18,16 @@ public class Instructor {
 
   protected static String soundOff(Integer number) {
 
-    if (isNumberHasSpecialCharacters(number, "7")) {
+    if (hasSpecialCharacters(number, "7")) {
       return ruleStrategy(number, Fizz, Whizz);
     }
-    if (isNumberHasSpecialCharacters(number, "5")) {
+    if (hasSpecialCharacters(number, "5")) {
       return ruleStrategy(number, Buzz, Whizz);
     }
-
-    if (isNumberHasSpecialCharacters(number, "3")) {
+    if (hasSpecialCharacters(number, "3")) {
       return Fizz.name();
     }
-    if (isNumberMultipleOfAnyDividend(number, 3, 5, 7)) {
+    if (multipleOfAny(number, 3, 5, 7)) {
       return ruleStrategy(number, Fizz, Buzz, Whizz);
     }
     return number.toString();
@@ -45,11 +44,11 @@ public class Instructor {
     return isNumberMultipleOfDividend(number, dividend.getDividend()) ? dividend.name() : "";
   }
 
-  private static boolean isNumberHasSpecialCharacters(Integer number, String specialCharacters) {
+  private static boolean hasSpecialCharacters(Integer number, String specialCharacters) {
     return number.toString().contains(specialCharacters);
   }
 
-  private static boolean isNumberMultipleOfAnyDividend(Integer number, Integer... dividends) {
+  private static boolean multipleOfAny(Integer number, Integer... dividends) {
     return Arrays.stream(dividends).anyMatch(dividend -> number % dividend == 0);
   }
 
