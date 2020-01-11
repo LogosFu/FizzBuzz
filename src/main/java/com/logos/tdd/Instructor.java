@@ -19,6 +19,9 @@ public class Instructor {
   protected static String soundOff(Integer studentIndex) {
 
     if (hasSpecialCharacters(studentIndex, "7")) {
+      if (hasSpecialCharacters(studentIndex, "3")) {
+        return Fizz.name();
+      }
       return ruleStrategy(studentIndex, Fizz, Whizz);
     }
     if (hasSpecialCharacters(studentIndex, "5")) {
