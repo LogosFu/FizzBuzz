@@ -13,24 +13,24 @@ public class Instructor {
 
   public static void main(String[] args) {
     IntStream.range(1, 1024)
-        .forEach(number -> System.out.println(number + "==》" + soundOff(number)));
+        .forEach(studentIndex -> System.out.println(studentIndex + "==》" + soundOff(studentIndex)));
   }
 
-  protected static String soundOff(Integer number) {
+  protected static String soundOff(Integer studentIndex) {
 
-    if (hasSpecialCharacters(number, "7")) {
-      return ruleStrategy(number, Fizz, Whizz);
+    if (hasSpecialCharacters(studentIndex, "7")) {
+      return ruleStrategy(studentIndex, Fizz, Whizz);
     }
-    if (hasSpecialCharacters(number, "5")) {
-      return ruleStrategy(number, Buzz, Whizz);
+    if (hasSpecialCharacters(studentIndex, "5")) {
+      return ruleStrategy(studentIndex, Buzz, Whizz);
     }
-    if (hasSpecialCharacters(number, "3")) {
+    if (hasSpecialCharacters(studentIndex, "3")) {
       return Fizz.name();
     }
-    if (multipleOfAny(number, 3, 5, 7)) {
-      return ruleStrategy(number, Fizz, Buzz, Whizz);
+    if (multipleOfAny(studentIndex, 3, 5, 7)) {
+      return ruleStrategy(studentIndex, Fizz, Buzz, Whizz);
     }
-    return number.toString();
+    return studentIndex.toString();
   }
 
   private static String ruleStrategy(Integer number, DividendENUM... dividends) {
