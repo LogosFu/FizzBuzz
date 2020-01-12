@@ -8,10 +8,14 @@ import lombok.Data;
 public class Student {
 
   private Integer index;
+  private SoundOffRule rule;
 
-  public String soundOff() {
-    return index.toString();
+  public Student(Integer index, SoundOffRule rule) {
+    this.index = index;
+    this.rule = new NormalRule();
   }
 
-
+  public String soundOff() {
+    return rule.soundOff(index);
+  }
 }
