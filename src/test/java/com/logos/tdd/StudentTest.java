@@ -40,6 +40,7 @@ public class StudentTest {
     when(NumberUtil
         .isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
         .thenReturn(true);
+    when(NumberUtil.hasCharts(index, Fizz.getDividend().toString())).thenReturn(false);
     when(NumberUtil.isMultipleOf(index, Fizz.getDividend())).thenReturn(true);
     final Student student = new Student(index);
     assertThat(student.soundOff()).isEqualTo(Fizz.toString());
@@ -47,51 +48,65 @@ public class StudentTest {
 
   @Test
   public void should_return_both_enum_when_sound_off_given_student_index_is_both_multi_ple_of3() {
-    Integer index1 = 1;
+    Integer index = 1;
     PowerMockito.mockStatic(NumberUtil.class);
     when(NumberUtil
-        .isMultipleOfAny(index1, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
+        .isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
         .thenReturn(true);
+    when(NumberUtil.hasCharts(index, Fizz.getDividend().toString())).thenReturn(false);
+    when(NumberUtil.isMultipleOf(index, Fizz.getDividend())).thenReturn(true);
+    when(NumberUtil.isMultipleOf(index, Buzz.getDividend())).thenReturn(true);
+    when(NumberUtil.isMultipleOf(index, Whizz.getDividend())).thenReturn(false);
 
-    when(NumberUtil.isMultipleOf(index1, Fizz.getDividend())).thenReturn(true);
-    when(NumberUtil.isMultipleOf(index1, Buzz.getDividend())).thenReturn(true);
-    when(NumberUtil.isMultipleOf(index1, Whizz.getDividend())).thenReturn(false);
-
-    assertThat(new Student(index1).soundOff()).isEqualTo(Fizz.toString() + Buzz.toString());
+    assertThat(new Student(index).soundOff()).isEqualTo(Fizz.toString() + Buzz.toString());
   }
 
   @Test
   public void should_return_both_enum_when_sound_off_given_student_index_is_both_multi_ple_of7() {
 
-    Integer index3 = 3;
+    Integer index = 3;
     PowerMockito.mockStatic(NumberUtil.class);
 
     when(NumberUtil
-        .isMultipleOfAny(index3, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
+        .isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
         .thenReturn(true);
+    when(NumberUtil.hasCharts(index, Fizz.getDividend().toString())).thenReturn(false);
+    when(NumberUtil.isMultipleOf(index, Fizz.getDividend())).thenReturn(false);
+    when(NumberUtil.isMultipleOf(index, Buzz.getDividend())).thenReturn(true);
+    when(NumberUtil.isMultipleOf(index, Whizz.getDividend())).thenReturn(true);
 
-    when(NumberUtil.isMultipleOf(index3, Fizz.getDividend())).thenReturn(false);
-    when(NumberUtil.isMultipleOf(index3, Buzz.getDividend())).thenReturn(true);
-    when(NumberUtil.isMultipleOf(index3, Whizz.getDividend())).thenReturn(true);
-
-    assertThat(new Student(index3).soundOff()).isEqualTo(Buzz.toString() + Whizz.toString());
+    assertThat(new Student(index).soundOff()).isEqualTo(Buzz.toString() + Whizz.toString());
   }
 
   @Test
   public void should_return_both_enum_when_sound_off_given_student_index_is_both_multi_ple_of5() {
-    Integer index2 = 2;
+    Integer index = 2;
 
     PowerMockito.mockStatic(NumberUtil.class);
 
     when(NumberUtil
-        .isMultipleOfAny(index2, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
+        .isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
         .thenReturn(true);
+    when(NumberUtil.hasCharts(index, Fizz.getDividend().toString())).thenReturn(false);
 
-    when(NumberUtil.isMultipleOf(index2, Fizz.getDividend())).thenReturn(true);
-    when(NumberUtil.isMultipleOf(index2, Buzz.getDividend())).thenReturn(false);
-    when(NumberUtil.isMultipleOf(index2, Whizz.getDividend())).thenReturn(true);
 
-    assertThat(new Student(index2).soundOff()).isEqualTo(Fizz.toString() + Whizz.toString());
+    when(NumberUtil.isMultipleOf(index, Fizz.getDividend())).thenReturn(true);
+    when(NumberUtil.isMultipleOf(index, Buzz.getDividend())).thenReturn(false);
+    when(NumberUtil.isMultipleOf(index, Whizz.getDividend())).thenReturn(true);
+
+    assertThat(new Student(index).soundOff()).isEqualTo(Fizz.toString() + Whizz.toString());
   }
 
+  @Test
+  public void should_return_fizz_when_sound_off_given_student_index_has3() {
+
+    Integer index = 1;
+
+    PowerMockito.mockStatic(NumberUtil.class);
+    when(NumberUtil.hasCharts(index, Fizz.getDividend().toString())).thenReturn(true);
+    when(NumberUtil
+        .isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
+        .thenReturn(false);
+    assertThat(new Student(index).soundOff()).isEqualTo(Fizz.toString());
+  }
 }
