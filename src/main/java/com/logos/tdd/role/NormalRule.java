@@ -1,4 +1,4 @@
-package com.logos.tdd;
+package com.logos.tdd.role;
 
 public class NormalRule implements SoundOffRule {
 

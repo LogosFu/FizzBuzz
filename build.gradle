@@ -12,14 +12,11 @@ repositories {
 }
 dependencies {
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.6.0-RC1'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.6.0-RC1'
+    testCompile 'junit:junit:4.8.2'
+    testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '1.6.4'
+    testCompile group: 'org.powermock', name: 'powermock-api-mockito', version: '1.6.4'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
-    testCompile group: 'org.mockito', name: 'mockito-all', version: '2.0.2-beta'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
     annotationProcessor 'org.projectlombok:lombok:1.18.2'
     compileOnly 'org.projectlombok:lombok:1.18.2'
-}
-
-test {
-    useJUnitPlatform()
 }
