@@ -3,6 +3,7 @@ package com.logos.tdd;
 import static com.logos.tdd.NumberUtil.hasCharts;
 import static com.logos.tdd.NumberUtil.isMultipleOfAny;
 import static com.logos.tdd.type.RuleType.Chart3;
+import static com.logos.tdd.type.RuleType.Chart5;
 import static com.logos.tdd.type.RuleType.Multiple;
 import static com.logos.tdd.type.RuleType.Normal;
 import static com.logos.tdd.type.RuleType.getRuleByType;
@@ -30,7 +31,9 @@ public class Student {
   }
 
   private RuleType getRuleType() {
-    if (hasCharts(index, Fizz.getDividend().toString())) {
+    if (hasCharts(index,Buzz.getDividend().toString())){
+      return Chart5;
+    }else if (hasCharts(index, Fizz.getDividend().toString())) {
       return Chart3;
     } else if (isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(),
         Whizz.getDividend())) {

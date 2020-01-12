@@ -4,6 +4,7 @@ import static com.logos.tdd.type.ShoutType.Buzz;
 import static com.logos.tdd.type.ShoutType.Fizz;
 import static com.logos.tdd.type.ShoutType.Whizz;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 import static org.mockito.Mockito.when;
 
 import org.junit.Test;
@@ -89,7 +90,6 @@ public class StudentTest {
         .thenReturn(true);
     when(NumberUtil.hasCharts(index, Fizz.getDividend().toString())).thenReturn(false);
 
-
     when(NumberUtil.isMultipleOf(index, Fizz.getDividend())).thenReturn(true);
     when(NumberUtil.isMultipleOf(index, Buzz.getDividend())).thenReturn(false);
     when(NumberUtil.isMultipleOf(index, Whizz.getDividend())).thenReturn(true);
@@ -108,5 +108,67 @@ public class StudentTest {
         .isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
         .thenReturn(true);
     assertThat(new Student(index).soundOff()).isEqualTo(Fizz.toString());
+  }
+
+  @Test
+  public void shouldReturnFizzBuzzWhenSoundOffGivenStudentHas5AndIsMultipleOf3And5And7() {
+    Integer index = 1;
+
+    PowerMockito.mockStatic(NumberUtil.class);
+    when(NumberUtil.hasCharts(index, Buzz.getDividend().toString())).thenReturn(true);
+    when(NumberUtil
+        .isMultipleOfAny(index, Buzz.getDividend(), Whizz.getDividend()))
+        .thenReturn(true);
+    when(NumberUtil.isMultipleOf(index,Buzz.getDividend())).thenReturn(true);
+    when(NumberUtil.isMultipleOf(index,Whizz.getDividend())).thenReturn(true);
+    when(NumberUtil.isMultipleOf(index,Fizz.getDividend())).thenReturn(true);
+
+    assertThat(new Student(index).soundOff()).isEqualTo(Buzz.toString()+Whizz.toString());
+  }
+  @Test
+  public void shouldReturnNumberWhenSoundOffGivenStudentHas5AndIsNotMultipleOfAny() {
+    Integer index = 1;
+
+    PowerMockito.mockStatic(NumberUtil.class);
+    when(NumberUtil.hasCharts(index, Buzz.getDividend().toString())).thenReturn(true);
+    when(NumberUtil
+        .isMultipleOfAny(index, Buzz.getDividend(), Whizz.getDividend()))
+        .thenReturn(false);
+    when(NumberUtil.isMultipleOf(index,Buzz.getDividend())).thenReturn(false);
+    when(NumberUtil.isMultipleOf(index,Whizz.getDividend())).thenReturn(false);
+    when(NumberUtil.isMultipleOf(index,Fizz.getDividend())).thenReturn(false);
+
+    assertThat(new Student(index).soundOff()).isEqualTo(index.toString());
+  }
+  @Test
+  public void shouldReturnNumberWhenSoundOffGivenStudentHas5AndIsNotMultipleOf3() {
+    Integer index = 1;
+
+    PowerMockito.mockStatic(NumberUtil.class);
+    when(NumberUtil.hasCharts(index, Buzz.getDividend().toString())).thenReturn(true);
+    when(NumberUtil
+        .isMultipleOfAny(index, Buzz.getDividend(), Whizz.getDividend()))
+        .thenReturn(false);
+    when(NumberUtil.isMultipleOf(index,Buzz.getDividend())).thenReturn(false);
+    when(NumberUtil.isMultipleOf(index,Whizz.getDividend())).thenReturn(false);
+    when(NumberUtil.isMultipleOf(index,Fizz.getDividend())).thenReturn(true);
+
+    assertThat(new Student(index).soundOff()).isEqualTo(index.toString());
+  }
+
+  @Test
+  public void shouldReturnNumberWhenSoundOffGivenStudentHas5AndIsNotMultipleOf7() {
+    Integer index = 1;
+
+    PowerMockito.mockStatic(NumberUtil.class);
+    when(NumberUtil.hasCharts(index, Buzz.getDividend().toString())).thenReturn(true);
+    when(NumberUtil
+        .isMultipleOfAny(index, Buzz.getDividend(), Whizz.getDividend()))
+        .thenReturn(true);
+    when(NumberUtil.isMultipleOf(index,Buzz.getDividend())).thenReturn(false);
+    when(NumberUtil.isMultipleOf(index,Whizz.getDividend())).thenReturn(true);
+    when(NumberUtil.isMultipleOf(index,Fizz.getDividend())).thenReturn(true);
+
+    assertThat(new Student(index).soundOff()).isEqualTo(Whizz.toString());
   }
 }
