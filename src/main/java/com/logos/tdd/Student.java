@@ -11,9 +11,7 @@ import static com.logos.tdd.type.RuleType.getRuleByType;
 
 import com.logos.tdd.role.SoundOffRule;
 import com.logos.tdd.type.RuleType;
-import lombok.Data;
 
-@Data
 public class Student {
 
   private Integer index;
