@@ -1,15 +1,17 @@
 package com.logos.tdd;
 
 import static com.logos.tdd.NumberUtil.hasCharts;
-import static com.logos.tdd.type.FizzBuzzWhizz.Buzz;
-import static com.logos.tdd.type.FizzBuzzWhizz.Fizz;
-import static com.logos.tdd.type.FizzBuzzWhizz.Whizz;
 import static com.logos.tdd.NumberUtil.isMultipleOfAny;
+import static com.logos.tdd.type.RuleType.Chart3;
+import static com.logos.tdd.type.RuleType.Multiple;
+import static com.logos.tdd.type.RuleType.Normal;
+import static com.logos.tdd.type.RuleType.getRuleByType;
+import static com.logos.tdd.type.ShoutType.Buzz;
+import static com.logos.tdd.type.ShoutType.Fizz;
+import static com.logos.tdd.type.ShoutType.Whizz;
 
-import com.logos.tdd.role.Chart3Rule;
-import com.logos.tdd.role.MultipleRule;
-import com.logos.tdd.role.NormalRule;
 import com.logos.tdd.role.SoundOffRule;
+import com.logos.tdd.type.RuleType;
 import lombok.Data;
 
 @Data
@@ -20,16 +22,21 @@ public class Student {
 
   public Student(Integer index) {
     this.index = index;
-    if (isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend())) {
-      this.rule = new MultipleRule();
-    } else if (hasCharts(index, Fizz.getDividend().toString())) {
-      this.rule = new Chart3Rule();
-    } else {
-      this.rule = new NormalRule();
-    }
+    this.rule = getRuleByType(getRuleType());
   }
 
   public String soundOff() {
     return rule.soundOff(index);
+  }
+
+  private RuleType getRuleType() {
+    if (hasCharts(index, Fizz.getDividend().toString())) {
+      return Chart3;
+    } else if (isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(),
+        Whizz.getDividend())) {
+      return Multiple;
+    } else {
+      return Normal;
+    }
   }
 }

@@ -1,8 +1,8 @@
 package com.logos.tdd;
 
-import static com.logos.tdd.type.FizzBuzzWhizz.Buzz;
-import static com.logos.tdd.type.FizzBuzzWhizz.Fizz;
-import static com.logos.tdd.type.FizzBuzzWhizz.Whizz;
+import static com.logos.tdd.type.ShoutType.Buzz;
+import static com.logos.tdd.type.ShoutType.Fizz;
+import static com.logos.tdd.type.ShoutType.Whizz;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
@@ -106,7 +106,7 @@ public class StudentTest {
     when(NumberUtil.hasCharts(index, Fizz.getDividend().toString())).thenReturn(true);
     when(NumberUtil
         .isMultipleOfAny(index, Fizz.getDividend(), Buzz.getDividend(), Whizz.getDividend()))
-        .thenReturn(false);
+        .thenReturn(true);
     assertThat(new Student(index).soundOff()).isEqualTo(Fizz.toString());
   }
 }

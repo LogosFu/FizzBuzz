@@ -1,6 +1,6 @@
 package com.logos.tdd.role;
 
-import static com.logos.tdd.type.FizzBuzzWhizz.Fizz;
+import static com.logos.tdd.type.ShoutType.Fizz;
 
 public class Chart3Rule implements SoundOffRule {
 
